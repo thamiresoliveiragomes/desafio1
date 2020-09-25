@@ -1,4 +1,4 @@
 data class Curso (
-        var nome: String,
-        var codigo: Int
+        val nome: String,
+        val codigo: Int
 )
