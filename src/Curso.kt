@@ -6,6 +6,21 @@ class Curso (
         val quantidadeMaxAlunos: Int,
         var matriculados: MutableList<Aluno>
 ){
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Curso
+
+        if (codigo != other.codigo) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return codigo
+    }
+
     fun adicionarAluno(aluno: Aluno): Boolean{
         return if(matriculados.size == quantidadeMaxAlunos){
             false
