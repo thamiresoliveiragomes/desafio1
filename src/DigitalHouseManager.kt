@@ -16,5 +16,17 @@ class DigitalHouseManager(
             }
         }
     }
+
+    fun registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, horasMonitoria: Int){
+        var tempoCasa: Int = 0
+        var novoProfessorAdjunto = ProfessorAdjunto(nome, sobrenome, codigoProfessor, tempoCasa, horasMonitoria)
+        professores.add(novoProfessorAdjunto)
+    }
+
+    fun registrarProfessorTitular(nome: String , sobrenome: String, codigoProfessor: Int, especialidade: String) {
+        var tempoCasa: Int = 0
+        var novoProfessorTitular = ProfessorTitular(nome, sobrenome, codigoProfessor, tempoCasa, especialidade)
+        professores.add(novoProfessorTitular)
+    }
     
 }
