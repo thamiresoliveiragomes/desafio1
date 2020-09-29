@@ -8,13 +8,21 @@ class DigitalHouseManager(
 ){
     fun registrarCurso(nome: String, codigoCurso: Int, quantidadeMaxAlunos: Int) {
         var novoCurso = Curso(nome = nome, codigo = codigoCurso, quantidadeMaxAlunos = quantidadeMaxAlunos)
-        cursos.add(novoCurso)
+        if(cursos.add(novoCurso)){
+            print("Curso registrado!")
+        }else{
+            println("Não foi possível registrar o curso. Verifique os dados inseridos.")
+        }
     }
 
     fun excluirCurso(codigoCurso: Int) {
         cursos.forEach {
             if (it.codigo == codigoCurso) {
-                cursos.remove(it)
+                if(cursos.remove(it)){
+                    println("Curso removido!")
+                }
+            }else{
+                println("Não foi possível remover o curso.")
             }
         }
     }
@@ -22,26 +30,44 @@ class DigitalHouseManager(
     fun registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, horasMonitoria: Int){
         var tempoCasa: Int = 0
         var novoProfessorAdjunto = ProfessorAdjunto(nome, sobrenome, codigoProfessor, tempoCasa, horasMonitoria)
-        professores.add(novoProfessorAdjunto)
+        if(professores.add(novoProfessorAdjunto)){
+            println("Professor Adjunto registrado!")
+        }else{
+            println("Não foi possível registrar o professor. Verifique os dados inseridos.")
+        }
     }
 
     fun registrarProfessorTitular(nome: String , sobrenome: String, codigoProfessor: Int, especialidade: String) {
         var tempoCasa: Int = 0
         var novoProfessorTitular = ProfessorTitular(nome, sobrenome, codigoProfessor, tempoCasa, especialidade)
-        professores.add(novoProfessorTitular)
+        if(professores.add(novoProfessorTitular)){
+            println("Professor Titular registrado!")
+        }else{
+            println("Não foi possível registrar o professor. Verifique os dados inseridos.")
+        }
     }
 
     fun excluirProfessor(codigoProfessor: Int){
         professores.forEach {
             if (it.codigo == codigoProfessor) {
-                professores.remove(it)
+                if(professores.remove(it)){
+                    println("Professor removido.")
+                }else{
+                    println("Não foi possível remover o professor")
+                }
+            }else{
+                println("Professor não localizado. Verifique o código inserido.")
             }
         }
     }
 
     fun registrarAluno(nome: String, sobrenome: String, codigoAluno: Int){
         var novoAluno = Aluno(nome, sobrenome, codigoAluno)
-        alunos.add(novoAluno)
+        if(alunos.add(novoAluno)){
+            println("Aluno registrado!")
+        }else{
+            println("Não foi possível fazer o registro do aluno.")
+        }
     }
 
     fun matricularAluno(codigoAluno: Int, codigoCurso: Int){
@@ -61,25 +87,22 @@ class DigitalHouseManager(
         }
     }
 
-    fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int){
+    fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int) {
         var curso = cursos.find { it.equals(codigoCurso) }
         var professorTitular = professores.find { it.equals(codigoProfessorTitular) }
         var professorAdjunto = professores.find { it.equals(codigoProfessorAdjunto) }
 
-        if(curso != null){
-            if (professorTitular != null && professorAdjunto != null){
+        if (curso != null) {
+            if (professorTitular != null && professorAdjunto != null) {
                 curso.profAdjunto = professorAdjunto as ProfessorAdjunto
                 curso.profTitular = professorTitular as ProfessorTitular
                 println("Professores alocados no curso.")
-            }else{
-                println("Professores não encontrados. Verifique os códigos digitados.")
+            } else {
+                println("Professores não encontrados. Verifique os dados inseridos.")
             }
-        }else{
+        } else {
             println("Curso não encontrado. Verifique o código digitado.")
         }
     }
-
-
-
 
 }
