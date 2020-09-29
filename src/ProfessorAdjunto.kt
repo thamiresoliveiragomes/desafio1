@@ -1,3 +1,3 @@
 abstract class ProfessorAdjunto(
-        val especialidade: String
+        val horasMonitoria: String
 ): Professor

@@ -1,3 +1,3 @@
 abstract class ProfessorTitular(
-        val horasMonitoria: Int
+        val especialidade: Int
 ): Professor
