@@ -1,10 +1,10 @@
-class Curso (
+class Curso(
         val nome: String,
         val codigo: Int,
-        var profTitular: ProfessorTitular,
-        var profAdjunto: ProfessorAdjunto,
+        var profTitular: ProfessorTitular?,
+        var profAdjunto: ProfessorAdjunto?,
         val quantidadeMaxAlunos: Int,
-        var matriculados: MutableList<Aluno>
+        var matriculados: MutableList<Aluno>?
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -22,15 +22,15 @@ class Curso (
     }
 
     fun adicionarAluno(aluno: Aluno): Boolean{
-        return if(matriculados.size == quantidadeMaxAlunos){
+        return if(matriculados?.size == quantidadeMaxAlunos){
             false
         }else{
-            matriculados.add(aluno)
+            matriculados?.add(aluno)
             true
         }
     }
 
     fun excluirAluno(aluno: Aluno){
-        matriculados.remove(aluno)
+        matriculados?.remove(aluno)
     }
 }

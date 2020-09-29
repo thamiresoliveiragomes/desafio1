@@ -7,7 +7,7 @@ class DigitalHouseManager(
         var matriculas: MutableList<Matricula>
 ){
     fun registrarCurso(nome: String, codigoCurso: Int, quantidadeMaxAlunos: Int) {
-        var novoCurso = Curso(nome = nome, codigo = codigoCurso, quantidadeMaxAlunos = quantidadeMaxAlunos)
+        var novoCurso = Curso(nome, codigoCurso, null, null, quantidadeMaxAlunos, null)
         if(cursos.add(novoCurso)){
             print("Curso registrado!")
         }else{
