@@ -1,3 +1,5 @@
+import java.util.*
+
 class DigitalHouseManager(
         var alunos: MutableList<Aluno>,
         var professores: MutableList<Professor>,
@@ -27,6 +29,19 @@ class DigitalHouseManager(
         var tempoCasa: Int = 0
         var novoProfessorTitular = ProfessorTitular(nome, sobrenome, codigoProfessor, tempoCasa, especialidade)
         professores.add(novoProfessorTitular)
+    }
+
+    fun excluirProfessor(codigoProfessor: Int){
+        professores.forEach {
+            if (it.codigo == codigoProfessor) {
+                professores.remove(it)
+            }
+        }
+    }
+
+    fun registrarAluno(nome: String, sobrenome: String, codigoAluno: Int){
+        var novoAluno = Aluno(nome, sobrenome, codigoAluno)
+        alunos.add(novoAluno)
     }
     
 }
