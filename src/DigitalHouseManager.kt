@@ -43,5 +43,43 @@ class DigitalHouseManager(
         var novoAluno = Aluno(nome, sobrenome, codigoAluno)
         alunos.add(novoAluno)
     }
-    
+
+    fun matricularAluno(codigoAluno: Int, codigoCurso: Int){
+        var aluno: Aluno? = alunos.find { it.equals(codigoAluno) }
+        var curso: Curso? = cursos.find { it.equals(codigoCurso) }
+
+        if (aluno != null && curso != null) {
+            if(curso.adicionarAluno(aluno)) {
+                var novaMatricula = Matricula(aluno, curso, Date())
+                matriculas.add(novaMatricula)
+                print("Matrícula realizada!")
+            }else{
+                print("Não foi possível realizar a matrícula. No momento não há vagas disponíveis.")
+            }
+        } else {
+            print("Não foi possível localizar código do aluno e/ou código do curso. Tente novamente.")
+        }
+    }
+
+    fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int){
+        var curso = cursos.find { it.equals(codigoCurso) }
+        var professorTitular = professores.find { it.equals(codigoProfessorTitular) }
+        var professorAdjunto = professores.find { it.equals(codigoProfessorAdjunto) }
+
+        if(curso != null){
+            if (professorTitular != null && professorAdjunto != null){
+                curso.profAdjunto = professorAdjunto as ProfessorAdjunto
+                curso.profTitular = professorTitular as ProfessorTitular
+                println("Professores alocados no curso.")
+            }else{
+                println("Professores não encontrados. Verifique os códigos digitados.")
+            }
+        }else{
+            println("Curso não encontrado. Verifique o código digitado.")
+        }
+    }
+
+
+
+
 }
