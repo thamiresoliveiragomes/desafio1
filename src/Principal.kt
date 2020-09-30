@@ -1,7 +1,7 @@
 fun main(){
     var digitalHouseManager = DigitalHouseManager()
 
-    digitalHouseManager.registrarProfessorTitular("João", "Silva", 101, "Mobile")
+    digitalHouseManager.registrarProfessorTitular("João", "Silva", 101, "Android")
     digitalHouseManager.registrarProfessorTitular("Maria", "Santos", 102, "FullStack")
 
     digitalHouseManager.registrarProfessorAdjunto("Gabriel", "Cruz", 203, 100)
@@ -24,6 +24,4 @@ fun main(){
     digitalHouseManager.matricularAluno(90011, 20002)
     digitalHouseManager.matricularAluno(90012, 20002)
     digitalHouseManager.matricularAluno(90013, 20002)
-
-
 }

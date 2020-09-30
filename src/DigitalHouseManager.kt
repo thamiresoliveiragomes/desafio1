@@ -105,4 +105,15 @@ class DigitalHouseManager(
         }
     }
 
+    fun consultarMatricula(codigoAluno: Int){
+        var aluno = alunos.find { it.codigo == codigoAluno }
+        var matricula = matriculas.find { it.aluno == aluno }
+
+        if(matricula != null){
+            var cursoMatriculado = matricula.curso.nome
+            println("Aluno matriculado no curso: ${cursoMatriculado}")
+        }else{
+            println("Aluno não encontrado. Verifique o código inserido.")
+        }
+    }
 }
