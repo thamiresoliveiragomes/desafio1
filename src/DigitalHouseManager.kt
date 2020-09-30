@@ -1,15 +1,15 @@
 import java.util.*
 
 class DigitalHouseManager(
-        var alunos: MutableList<Aluno>,
-        var professores: MutableList<Professor>,
-        var cursos: MutableList<Curso>,
-        var matriculas: MutableList<Matricula>
+        var alunos: MutableSet<Aluno> = mutableSetOf(),
+        var professores: MutableSet<Professor> = mutableSetOf(),
+        var cursos: MutableSet<Curso> = mutableSetOf(),
+        var matriculas: MutableSet<Matricula> = mutableSetOf()
 ){
     fun registrarCurso(nome: String, codigoCurso: Int, quantidadeMaxAlunos: Int) {
-        var novoCurso = Curso(nome, codigoCurso, null, null, quantidadeMaxAlunos, null)
+        var novoCurso = Curso(nome, codigoCurso, null, null, quantidadeMaxAlunos)
         if(cursos.add(novoCurso)){
-            print("Curso registrado!")
+            println("Curso registrado!")
         }else{
             println("Não foi possível registrar o curso. Verifique os dados inseridos.")
         }
@@ -71,26 +71,26 @@ class DigitalHouseManager(
     }
 
     fun matricularAluno(codigoAluno: Int, codigoCurso: Int){
-        var aluno: Aluno? = alunos.find { it.equals(codigoAluno) }
-        var curso: Curso? = cursos.find { it.equals(codigoCurso) }
+        var aluno: Aluno? = alunos.find { it.codigo == codigoAluno }
+        var curso: Curso? = cursos.find { it.codigo == codigoCurso }
 
         if (aluno != null && curso != null) {
             if(curso.adicionarAluno(aluno)) {
                 var novaMatricula = Matricula(aluno, curso, Date())
                 matriculas.add(novaMatricula)
-                print("Matrícula realizada!")
+                println("Matrícula realizada!")
             }else{
-                print("Não foi possível realizar a matrícula. No momento não há vagas disponíveis.")
+                println("Não foi possível realizar a matrícula. No momento não há vagas disponíveis.")
             }
         } else {
-            print("Não foi possível localizar código do aluno e/ou código do curso. Tente novamente.")
+            println("Não foi possível localizar código do aluno e/ou código do curso. Tente novamente.")
         }
     }
 
     fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int) {
-        var curso = cursos.find { it.equals(codigoCurso) }
-        var professorTitular = professores.find { it.equals(codigoProfessorTitular) }
-        var professorAdjunto = professores.find { it.equals(codigoProfessorAdjunto) }
+        var curso = cursos.find { it.codigo == codigoCurso }
+        var professorTitular = professores.find { it.codigo == codigoProfessorTitular }
+        var professorAdjunto = professores.find { it.codigo == codigoProfessorAdjunto }
 
         if (curso != null) {
             if (professorTitular != null && professorAdjunto != null) {
